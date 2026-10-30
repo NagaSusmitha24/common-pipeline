@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <settings>
     <servers>
-        <!-- Exchange login: the Connected App (client id ~?~ client secret), read from env vars set in the workflow -->
+        <!-- Exchange login using the Connected App: clientId~?~clientSecret.
+             Values come from env vars set in the workflow. -->
         <server>
             <id>anypoint-exchange-v3</id>
             <username>~~~Client~~~</username>
             <password>${env.CA_CLIENT_ID}~?~${env.CA_CLIENT_SECRET}</password>
         </server>
     </servers>
-    <pluginGroups>
-        <pluginGroup>org.mule.tools</pluginGroup>
-    </pluginGroups>
+ 
     <profiles>
         <profile>
             <id>mule-extra-repos</id>
@@ -19,8 +18,10 @@
             </activation>
             <repositories>
                 <repository>
-                    <id>mule-public</id>
-                    <url>https://repository.mulesoft.org/nexus/content/repositories/public</url>
+                    <id>mulesoft-releases</id>
+                    <name>MuleSoft Releases Repository</name>
+                    <url>https://repository.mulesoft.org/nexus/repository/releases/</url>
+                    <layout>default</layout>
                 </repository>
                 <repository>
                     <id>anypoint-exchange-v3</id>
@@ -31,8 +32,13 @@
             </repositories>
             <pluginRepositories>
                 <pluginRepository>
-                    <id>mule-public</id>
-                    <url>https://repository.mulesoft.org/nexus/content/repositories/public</url>
+                    <id>mulesoft-releases</id>
+                    <name>MuleSoft Releases Repository</name>
+                    <url>https://repository.mulesoft.org/nexus/repository/releases/</url>
+                    <layout>default</layout>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
                 </pluginRepository>
             </pluginRepositories>
         </profile>
